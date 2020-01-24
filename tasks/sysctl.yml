@@ -1,5 +1,6 @@
 ---
-- sysctl:
+- name: create or update sysctl file {{ outer_item.key }}
+  sysctl:
     sysctl_file: '/etc/sysctl.d/{{ outer_item.key }}'
     name: '{{ item.key }}'
     value: '{{ item.value | string }}'
