@@ -1,0 +1,40 @@
+# vim: ai et ts=2 st=2 sw=2 :
+---
+- name: check if we're running supported os
+  assert:
+    fail_msg: "{{ role_name }} only supports ubuntu versions 12, 14, 16, 18 and centos versions 6, 7!"
+    success_msg: "{{ role_name }} supports {{ ansible_distribution }} version {{ ansible_distribution_version }}"
+    quiet: "{{ not ansible_check_mode }}"
+    that:
+      ( ansible_distribution|lower == "ubuntu" and ansible_distribution_version|int in [12, 14, 16, 18] )
+      or ( ansible_distribution|lower == "centos" and ansible_distribution_major_version|int in [6, 7, 8] )
+
+- name: specific config for debian and redhat systems
+  include: "{{ ansible_os_family | lower }}.yml"
+
+- name: set sysctl
+  include: sysctl.yml
+  loop: '{{ sysctl_d | dict2items }}'
+  loop_control:
+    loop_var: outer_item
+    label: '{{ outer_item.key }}'
+
+- name: find all files in sysctl.d
+  find:
+    paths: /etc/sysctl.d
+    file_type: file
+    patterns: '*.conf'
+  register: sysctl_files
+
+- name: make list of exclusive files
+  set_fact:
+    sysctl_exclusive_files: '{{ sysctl_exclusive_files | default([]) + [ "/etc/sysctl.d/" + item ] }}'
+  loop: '{{ sysctl_d | dict2items | map(attribute="key") | list }}'
+  when: sysctl_exclusive
+
+- name: remove all non exclusive sysctl.d files
+  file:
+    name: '{{ item }}'
+    state: absent
+  loop: '{{ sysctl_files.files | map(attribute="path") | list | difference(sysctl_exclusive_files) }}'
+  when: sysctl_exclusive

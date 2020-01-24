@@ -1,0 +1,9 @@
+---
+- sysctl:
+    sysctl_file: '/etc/sysctl.d/{{ outer_item.key }}'
+    name: '{{ item.key }}'
+    value: '{{ item.value | string }}'
+    sysctl_set: true
+    ignoreerrors: true
+  loop: '{{ outer_item.value | dict2items }}'
+
