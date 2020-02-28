@@ -42,15 +42,16 @@ Example variables is optimized 10G <100ms network. Enable qdisk `fq` on servers,
     - hosts: servers
       roles:
          - role: sysctl
-           50-network-100ms.conf:
-             net.core.rmem_max: 67108864
-             net.core.wmem_max: 67108864
-             net.ipv4.tcp_rmem: 4096 87380 33554432
-             net.ipv4.tcp_wmem: 4096 87380 33554432
-             net.ipv4.tcp_mtu_probing: 1
-             #net.core.default_qdisc: fq
-          60-fast-start.conf:
-             net.ipv4.tcp_slow_start_after_idle: 0
+           sysctl_d:
+             50-network-100ms.conf:
+               net.core.rmem_max: 67108864
+               net.core.wmem_max: 67108864
+               net.ipv4.tcp_rmem: 4096 87380 33554432
+               net.ipv4.tcp_wmem: 4096 87380 33554432
+               net.ipv4.tcp_mtu_probing: 1
+               #net.core.default_qdisc: fq
+            60-fast-start.conf:
+               net.ipv4.tcp_slow_start_after_idle: 0
 
 Testing
 -------
