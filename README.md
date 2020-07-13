@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `1.0.1` --- prepare for github
 * `1.0.0` --- initial role
 * `master` --- latest development version
 
@@ -83,7 +84,7 @@ cat ~/.ssh/config | grep ^Host | cut -d\  -f2 | xargs cssh
 License
 -------
 
-MIT / BSD
+GPLv2
 
 Author Information
 ------------------
