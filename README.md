@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `1.0.2` --- tested with Ansible 2.9.11
 * `1.0.1` --- prepare for github
 * `1.0.0` --- initial role
 * `master` --- latest development version
