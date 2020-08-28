@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `1.2.0` --- remove ubuntu precise from testing
 * `1.1.0` --- added ubuntu focal, 20.04
 * `1.0.2` --- tested with Ansible 2.9.11
 * `1.0.1` --- prepare for github
@@ -21,7 +22,6 @@ This role is limited to
 * Ubuntu 18.04 - Bionic
 * Ubuntu 16.04 - Xenial
 * Ubuntu 14.04 - Trusty
-* Ubuntu 12.04 - Precise
 * CentOS 8
 * CentOS 7
 * CentOS 6
