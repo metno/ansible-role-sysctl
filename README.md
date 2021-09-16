@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `1.3.0` --- add rhel8 support; remove trusty and centos6 support
 * `1.2.0` --- remove ubuntu precise from testing
 * `1.1.0` --- added ubuntu focal, 20.04
 * `1.0.2` --- tested with Ansible 2.9.11
@@ -21,10 +22,9 @@ This role is limited to
 * Ubuntu 20.04 - Focal
 * Ubuntu 18.04 - Bionic
 * Ubuntu 16.04 - Xenial
-* Ubuntu 14.04 - Trusty
 * CentOS 8
 * CentOS 7
-* CentOS 6
+* RHEL 8
 
 Role Variables
 --------------
