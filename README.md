@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `1.4.0` --- add jammy support; remove centos8 support
 * `1.3.0` --- add rhel8 support; remove trusty and centos6 support
 * `1.2.0` --- remove ubuntu precise from testing
 * `1.1.0` --- added ubuntu focal, 20.04
@@ -19,10 +20,10 @@ Requirements
 
 This role is limited to
 
+* Ubuntu 22.04 - Jammy
 * Ubuntu 20.04 - Focal
 * Ubuntu 18.04 - Bionic
 * Ubuntu 16.04 - Xenial
-* CentOS 8
 * CentOS 7
 * RHEL 8
 
