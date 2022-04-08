@@ -7,4 +7,3 @@
     sysctl_set: true
     ignoreerrors: true
   loop: '{{ outer_item.value | dict2items }}'
-
