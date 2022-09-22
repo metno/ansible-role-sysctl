@@ -1,6 +1,6 @@
 ---
-- name: create or update sysctl file {{ outer_item.key }}
-  sysctl:
+- name: Create or update sysctl file {{ outer_item.key }}
+  ansible.posix.sysctl:
     sysctl_file: '/etc/sysctl.d/{{ outer_item.key }}'
     name: '{{ item.key }}'
     value: '{{ item.value | string }}'
