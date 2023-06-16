@@ -5,6 +5,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 
 Version
 -------
+* `2.1.0` --- add Fedora CoreOS support
 * `2.0.0` --- updated for ansible 2.12.9
 * `1.5.0` --- add RHEL9 and CentOS Stream 8 support
 * `1.4.0` --- add jammy support; remove centos8 support
@@ -63,6 +64,9 @@ Example variables is optimized 10G <100ms network. Enable qdisk `fq` on servers,
 
 Testing
 -------
+
+NOTICE: Fedora CoreOS is tested manually, but currently no automatic tests
+are added for FCOS.
 
 ### Test environment for all OSes
 
