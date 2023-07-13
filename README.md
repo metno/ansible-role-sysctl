@@ -5,6 +5,8 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 
 Version
 -------
+
+* `2.1.1` --- bug fix, ansible-lint
 * `2.1.0` --- add Fedora CoreOS support
 * `2.0.0` --- updated for ansible 2.12.9
 * `1.5.0` --- add RHEL9 and CentOS Stream 8 support
@@ -30,6 +32,7 @@ This role is limited to
 * CentOS Stream 8
 * RHEL 8
 * RHEL 9
+* Fedora CoreOS
 
 Role Variables
 --------------
