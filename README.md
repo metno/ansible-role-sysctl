@@ -37,6 +37,10 @@ This role is limited to
 * RHEL 9
 * Fedora CoreOS 38
 * Fedora CoreOS 39
+* Rocky Linux 8
+* Rocky Linux 9
+* AlmaLinux 8
+* AlmaLinux 9
 
 Role Variables
 --------------
