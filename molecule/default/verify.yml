@@ -1,0 +1,35 @@
+---
+- name: Verify sysctl.d configuration
+  hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    expected_sysctl_d: "{{ sysctl_d }}"  # Use the variable from group_vars
+
+  tasks:
+    - name: Read files in /etc/sysctl.d directory
+      ansible.builtin.find:
+        paths: /etc/sysctl.d
+        patterns: "*.conf"
+      register: sysctl_files
+
+    - name: Filter sysctl files to only include expected files
+      ansible.builtin.set_fact:
+        filtered_sysctl_files: >-
+          {{
+            sysctl_files.files | selectattr('path', 'search', '/etc/sysctl.d/' + item) | list
+          }}
+      with_items: "{{ expected_sysctl_d.keys() }}"
+      loop_control:
+        label: "{{ item }}"
+      register: filtered_result
+
+    - name: Combine filtered files into a single list
+      ansible.builtin.set_fact:
+        sysctl_files_to_check: "{{ filtered_result.results | map(attribute='ansible_facts.filtered_sysctl_files') | sum(start=[]) }}"
+
+    - name: Verify the content of each sysctl.d file
+      ansible.builtin.include_tasks: verify_sysctl_file.yml
+      loop: "{{ sysctl_files_to_check }}"
+      loop_control:
+        label: "{{ item.path }}"
