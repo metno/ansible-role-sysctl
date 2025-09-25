@@ -1,0 +1,44 @@
+---
+- name: Read the file content
+  ansible.builtin.slurp:
+    path: "{{ item.path }}"
+  register: file_content
+
+- name: Decode and split the file content into lines
+  ansible.builtin.set_fact:
+    file_lines: >-
+      {{
+        file_content.content | b64decode | string | regex_replace('\\r', '') | split('\n') | map('trim') | reject('equalto', '') | list
+      }}
+  when: file_content.content is defined and file_content.content | length > 0
+
+- name: Build expected file content from the variable
+  vars:
+    filename: "{{ item.path | basename }}"
+    expected_content: >-
+      {{
+        (expected_sysctl_d[filename] | dict2items | map(attribute='key') | zip(
+        expected_sysctl_d[filename] | dict2items | map(attribute='value')
+        ) | map('join', '=') | list) | sort
+      }}
+  ansible.builtin.set_fact:
+    expected_lines: "{{ expected_content }}"
+  when: file_content.content is defined and file_content.content | length > 0
+
+- name: Format file_lines
+  ansible.builtin.set_fact:
+    formatted_file_lines: "{{ file_lines[0].splitlines() | sort }}"
+
+- name: Format expected_lines
+  ansible.builtin.set_fact:
+    formatted_expected_lines: "{{ expected_lines | sort }}"
+
+- name: Assert that the file content matches the expected content
+  ansible.builtin.assert:
+    that:
+      - file_lines[0].splitlines() | sort == expected_lines | sort
+    fail_msg: >
+      The content of {{ item.path }} does not match the expected variable.
+    success_msg: >
+      The content of {{ item.path }} matches the expected variable.
+  when: file_content.content is defined and file_content.content | length > 0

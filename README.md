@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `3.0.2` --- Move testing to Ansible Molecule
 * `3.0.1` --- Update support for Fedora CoreOS to v41 (and remove older versions)
 * `3.0.0` --- Add Unsible-core 2.16. Removed support for Ubuntu xenial and bionic
 * `2.2.0` --- Add Ubuntu 24.04 noble support
@@ -71,31 +72,26 @@ Example variables is optimized 10G <100ms network. Enable qdisk `fq` on servers,
 Testing
 -------
 
-NOTICE: Fedora CoreOS is tested manually, but currently no automatic tests
-are added for FCOS.
+Testing is done using Ansible Molecule. It uses Vagrant with libvirt as backend.
 
-### Test environment for all OSes
+To run full test run:
 
 ```bash
-cd tests
-vagrant up
+molecule test
 ```
 
-### Rerun role
-
-Run role on all OSes again.
+To run test step by step run:
 
 ```bash
-vagrant provision
+molecule create
+molecule converge
+molecule verify
+molecule destroy
 ```
 
-### Debug interactively
-
-This uses cluster ssh to work with all vagrant boxes at the same time.
-
-```bash
-vagrant ssh-config > ~/.ssh/config
-cat ~/.ssh/config | grep ^Host | cut -d\  -f2 | xargs cssh
+To run toward specific scenario use `-s` option.
+```
+molecule test -s ubuntu
 ```
 
 License
