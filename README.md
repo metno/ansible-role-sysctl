@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `3.0.1` --- Update support for Fedora CoreOS to v41 (and remove older versions)
 * `3.0.0` --- Add Unsible-core 2.16. Removed support for Ubuntu xenial and bionic
 * `2.2.0` --- Add Ubuntu 24.04 noble support
 * `2.1.2` --- Allow Fedora CoreOS 39
@@ -34,8 +35,7 @@ This role is limited to
 * CentOS Stream 8
 * RHEL 8
 * RHEL 9
-* Fedora CoreOS 38
-* Fedora CoreOS 39
+* Fedora CoreOS 41
 
 Role Variables
 --------------
