@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `3.1.0` --- Added support for RHEL10. The role now supports os_family = redhat.
 * `3.0.2` --- Move testing to Ansible Molecule
 * `3.0.1` --- Update support for Fedora CoreOS to v41 (and remove older versions)
 * `3.0.0` --- Add Unsible-core 2.16. Removed support for Ubuntu xenial and bionic
@@ -27,15 +28,12 @@ Version
 Requirements
 ------------
 
-This role is limited to
+This role supports
 
-* Ubuntu 24.04 - Noble
-* Ubuntu 22.04 - Jammy
-* Ubuntu 20.04 - Focal
+* RedHat Based OS, version 8,9,10
+* Ubuntu 20.04, 22.04, and 24.04
 * CentOS 7
 * CentOS Stream 8
-* RHEL 8
-* RHEL 9
 * Fedora CoreOS 41
 
 Role Variables
