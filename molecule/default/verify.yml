@@ -1,6 +1,6 @@
 ---
 - name: Verify sysctl.d configuration
-  hosts: all
+  hosts: vms
   become: true
   gather_facts: true
   vars:

@@ -6,6 +6,7 @@ Role for handling `/etc/sysctl.d/*.conf` files. Applies new sysctl setting on ru
 Version
 -------
 
+* `3.1.1` --- Updated molecule test setup
 * `3.1.0` --- Added support for RHEL10. The role now supports os_family = redhat.
 * `3.0.2` --- Move testing to Ansible Molecule
 * `3.0.1` --- Update support for Fedora CoreOS to v41 (and remove older versions)
@@ -70,9 +71,11 @@ Example variables is optimized 10G <100ms network. Enable qdisk `fq` on servers,
 Testing
 -------
 
-Testing is done using Ansible Molecule. It uses Vagrant with libvirt as backend.
+Testing is done using Ansible Molecule. It uses our libvirt-provision role as backend.
 
-To run full test run:
+Testing is done on Almalinux and Ubuntu.
+
+To run test:
 
 ```bash
 molecule test
@@ -83,13 +86,9 @@ To run test step by step run:
 ```bash
 molecule create
 molecule converge
+molecule idempotence
 molecule verify
 molecule destroy
-```
-
-To run toward specific scenario use `-s` option.
-```
-molecule test -s ubuntu
 ```
 
 License
