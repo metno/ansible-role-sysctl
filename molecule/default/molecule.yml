@@ -6,6 +6,7 @@ driver:
     login_cmd_template: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l {user} {address}"
 
 platforms:
+  - name: sysctl-resolute
   - name: sysctl-noble
   - name: sysctl-jammy
   - name: sysctl-alma8
